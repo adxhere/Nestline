@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Nestline Landing</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: asymmetric editorial hero (copy left, artwork + tilting goal card right), bento of features, live planner, three steps. */
+:root{
+  color-scheme:light;
+  --bg:#F3E8D8; --rangoli:#1E296B; --surface:#FFF6EC; --primary:#1E3A8A; --text:#111827; --muted:#4B5563;
+  --line:#E6CFB4; --on-primary:#FFFFFF; --tint:#FFDDBD; --stroke:#1E3A8A; --card-ink:#111827;
+  --ok:#0F766E; --grad:linear-gradient(120deg,#FDBA74 0%,#FED7AA 50%,#93C5FD 100%);
+  --font:"Inter","Roboto",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:24px;
+}
+body.skin-2{color-scheme:dark;--rangoli:#7DD3FC;--bg:#070B14;--surface:#0F172A;--primary:#06B6D4;--text:#F8FAFC;--muted:#94A3B8;--line:#1E293B;--on-primary:#04121A;--tint:#0B2A3F;--stroke:#38BDF8;--card-ink:#FFFFFF;--ok:#5EEAD4;--grad:radial-gradient(circle at top right,#0EA5E9 0%,#3B82F6 45%,#070B14 100%)}
+body.skin-3{--bg:#FAF9F6;--surface:#FFFFFF;--primary:#1D4ED8;--text:#0F172A;--muted:#475569;--line:#E2E0D8;--on-primary:#FFFFFF;--tint:#DBE7FF;--stroke:#1D4ED8;--card-ink:#FFFFFF;--ok:#0F766E;--grad:linear-gradient(135deg,#2563EB 0%,#38BDF8 50%,#818CF8 100%)}
+body.skin-4{--bg:#F4F7F6;--surface:#FFFFFF;--primary:#2563EB;--text:#062822;--muted:#3F5F58;--line:#D9E4E0;--on-primary:#FFFFFF;--tint:#CFF5E3;--stroke:#047857;--card-ink:#FFFFFF;--ok:#047857;--grad:linear-gradient(135deg,#059669 0%,#34D399 45%,#3B82F6 100%)}
+
+*{box-sizing:border-box}
+body{overflow-x:clip;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.55;transition:background .4s,color .4s}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;letter-spacing:-0.02em;text-wrap:balance;line-height:1.08}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-0.02em;text-decoration:none}
+.logo i{width:28px;height:28px;border-radius:9px;background:var(--grad);display:block}
+.nav{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--muted);padding:10px 14px;border-radius:999px;transition:background .2s,color .2s}
+.nav a:hover{background:var(--surface);color:var(--text)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;border:0;font:600 15px var(--font);text-decoration:none;cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .25s}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--primary);color:var(--on-primary);box-shadow:0 8px 22px -10px var(--primary)}
+.btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+.nav .btn-primary{color:var(--on-primary);min-height:44px}
+.nav .btn-primary:hover{background:var(--primary);color:var(--on-primary)}
+
+/* hero */
+.hero>div{position:relative;z-index:1}
+.hero>.rangoli{position:absolute;z-index:0;top:50%;right:calc((100% - 100vw)/2);width:350px;height:700px;transform:translateY(-50%);overflow:hidden;pointer-events:none;opacity:.18}
+.rangoli svg{position:absolute;left:0;top:0;width:700px;height:700px;animation:breathe 46s ease-in-out infinite alternate}
+@keyframes breathe{from{transform:rotate(-9deg) scale(1)}to{transform:rotate(9deg) scale(1.03)}}
+@media (max-width:860px){.hero>.rangoli{top:auto;bottom:0;transform:none;width:180px;height:360px}.rangoli svg{width:360px;height:360px}}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;padding-block:36px 64px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--primary);background:var(--tint);padding:7px 12px;border-radius:999px}
+.eyebrow b{width:7px;height:7px;border-radius:50%;background:var(--primary);display:block}
+.hero h1{font-size:clamp(40px,6vw,76px);font-weight:800;margin-top:20px}
+.hero h1 span{color:var(--primary)}
+.lede{font-size:18px;color:var(--muted);max-width:52ch;margin-top:20px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.fine{font-size:13px;color:var(--muted);margin-top:16px}
+
+.art{position:relative;min-width:0}
+.art svg{width:100%;height:auto;display:block}
+.par{transition:transform .25s ease-out}
+.floaty{animation:float 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.floaty.b{animation-duration:7.5s;animation-delay:-2s}
+.floaty.c{animation-duration:5s;animation-delay:-1s}
+.coin{transition:transform .5s cubic-bezier(.34,1.56,.64,1);transform-box:fill-box}
+.hero:has(.btn-primary:hover) .coin{transform:translateY(-14px)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.scene{position:absolute;left:0;top:5%;width:min(320px,74%);perspective:900px}
+.topupfig{margin-top:auto;font-size:44px;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.topupfig small{display:block;font-size:13px;font-weight:600;letter-spacing:0;margin-top:8px}
+.card3d{position:relative;border-radius:22px;padding:20px;color:var(--card-ink);background:var(--grad);box-shadow:0 30px 60px -25px rgba(15,23,42,.55);border:1px solid rgba(255,255,255,.35);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out;overflow:hidden;display:flex;flex-direction:column;gap:12px}
+.card3d::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,70%) var(--gy,10%),rgba(255,255,255,.45),transparent 45%);pointer-events:none}
+.card3d .row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;font-weight:600}
+.card3d .amt{font-size:38px;font-weight:800;letter-spacing:-0.02em;line-height:1}
+.bar{height:8px;border-radius:4px;background:rgba(255,255,255,.35);overflow:hidden}
+.bar i{display:block;height:100%;width:20%;border-radius:4px;background:var(--card-ink);transition:width .8s cubic-bezier(.22,1,.36,1)}
+.pill{background:rgba(255,255,255,.28);padding:4px 10px;border-radius:999px;font-size:12px}
+.cardbtns{display:flex;gap:8px;position:relative;z-index:1}
+.cardbtns button{flex:1;min-height:44px;border-radius:999px;border:1px solid currentColor;background:rgba(255,255,255,.16);color:inherit;font:600 13px var(--font);cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.cardbtns button:hover{transform:scale(1.04)}
+
+/* sections */
+section{padding-block:56px}
+.head{display:flex;flex-direction:column;gap:10px;max-width:640px;margin-bottom:28px}
+.head h2{font-size:clamp(28px,3.6vw,44px);font-weight:800}
+.head h2::after{content:"";display:block;width:120px;height:14px;margin-top:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14' fill='none' stroke='%231E3A8A' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M2 8q12-10 24 0t24 0 24 0 24 0 24 0'/%3E%3C/svg%3E") no-repeat;opacity:.6}
+section{position:relative}
+.corner{position:absolute;pointer-events:none;opacity:.14;overflow:hidden}
+.corner svg{position:absolute;width:520px;height:520px;animation:breathe 60s ease-in-out infinite alternate}
+.corner.tl{left:calc((100% - 100vw)/2);top:10px;width:260px;height:260px}.corner.tl svg{right:0;bottom:0}
+.corner.br{right:calc((100% - 100vw)/2);bottom:-40px;width:260px;height:260px}.corner.br svg{left:0;top:0}
+.archdoodle{position:absolute;right:0;top:40px;width:180px;height:auto;opacity:.75}
+@media (max-width:860px){.corner,.archdoodle{display:none}}
+@media (prefers-reduced-motion:reduce){.corner svg{animation:none}}
+.head p{color:var(--muted);font-size:17px}
+
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.tile:hover{transform:translateY(-5px);box-shadow:0 22px 40px -28px var(--primary)}
+.tile h3{font-size:20px;font-weight:700}
+.tile p{color:var(--muted);font-size:15px}
+.t-wide{grid-column:span 4}.t-sm{grid-column:span 2}.t-half{grid-column:span 3}
+.t-grad{background:var(--grad);color:var(--card-ink);border-color:transparent}
+.t-grad p{color:inherit;opacity:.92}
+.prio{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.prio div{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--bg);border-radius:14px;padding:12px 14px;font-size:14px;font-weight:600}
+.prio small{font-weight:500;color:var(--muted);font-size:13px}
+.tag{font-size:12px;font-weight:600;color:var(--primary);background:var(--tint);padding:4px 10px;border-radius:999px;align-self:flex-start}
+.paybtn{align-self:flex-start;margin-top:6px;min-height:44px;padding:0 18px;border-radius:999px;background:var(--text);color:var(--bg);font-weight:600;font-size:14px;display:inline-flex;align-items:center}
+
+/* planner */
+.planner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:32px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.field label{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:15px}
+.field output{color:var(--primary)}
+input[type=range]{width:100%;accent-color:var(--primary);height:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--text);font:600 14px var(--font);cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .2s}
+.chips button:hover{transform:scale(1.05);border-color:var(--primary)}
+.result{background:var(--grad);color:var(--card-ink);border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.result .big{font-size:clamp(40px,6vw,64px);font-weight:800;letter-spacing:-0.02em;line-height:1}
+.result p{font-size:15px;opacity:.95}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:0}
+.steps li{border-top:2px solid var(--primary);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.steps b{font-size:14px;color:var(--primary)}
+.steps h3{font-size:20px;font-weight:700}
+.steps p{color:var(--muted);font-size:15px}
+
+footer{border-top:1px solid var(--line);padding-block:28px 96px;color:var(--muted);font-size:14px}
+
+/* theme pill */
+.skins{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;padding:6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:0 14px 30px -16px rgba(15,23,42,.5);z-index:20}
+.skins button{width:44px;height:44px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.skins button:hover{transform:scale(1.12)}
+.skins button[aria-pressed=true]{border-color:var(--text)}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:20px 40px}
+  .t-wide,.t-sm,.t-half{grid-column:span 6}
+  .planner{grid-template-columns:minmax(0,1fr);padding:20px}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .nav a:not(.btn){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .floaty,.rangoli svg{animation:none}
+  .par,.card3d,.btn,.tile,.coin{transition:none}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#top"><i></i>Nestline</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#planner">Planner</a>
+      <a href="#how">How it works</a>
+      <a class="btn btn-primary" href="/app">Open dashboard</a>
+    </nav>
+  </header>
+
+  <div class="hero" id="top">
+    <div class="rangoli" id="rangoli" aria-hidden="true"></div>
+    <div>
+      <span class="eyebrow"><b></b>AI savings agent, powered by PayPal</span>
+      <h1>Say what you're saving for. <span>The agent does the rest.</span></h1>
+      <p class="lede">A bike by March, college fees in June, Goa in December. Nestline plans across all your goals, keeps each one on track, and pays through PayPal when a goal is ready.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="/app">Start a goal</a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <p class="fine">Hackathon demo. Runs on the PayPal sandbox, so no real money moves.</p>
+    </div>
+
+    <div class="art" id="art">
+      <svg viewBox="0 0 520 500" role="img" aria-label="Illustration of a path of coins rising through an archway toward a flag">
+        <defs>
+          <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="var(--stroke)"></circle></pattern>
+        </defs>
+        <g class="par" data-depth="6">
+          <circle cx="360" cy="150" r="130" fill="var(--tint)"></circle>
+          <circle cx="360" cy="150" r="130" fill="url(#dots)" opacity=".35"></circle>
+        </g>
+        <g class="par" data-depth="12" fill="none" stroke="var(--stroke)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M250 330V190a110 110 0 0 1 220 0v140"></path>
+          <path d="M282 330V196a78 78 0 0 1 156 0v134"></path>
+          <path d="M314 330V204a46 46 0 0 1 92 0v126"></path>
+          <path d="M228 330h264"></path>
+        </g>
+        <g class="par" data-depth="20" fill="none" stroke="var(--stroke)" stroke-width="3" stroke-linecap="round">
+          <path d="M40 440c70-10 120-50 170-90s100-70 150-150" stroke-dasharray="2 12"></path>
+          <path d="M360 200v-70"></path>
+          <path d="M360 132l44 14-44 16z" fill="var(--stroke)"></path>
+        </g>
+        <g class="par" data-depth="30">
+          <g class="floaty"><g class="coin"><circle cx="78" cy="420" r="24" fill="var(--bg)" stroke="var(--stroke)" stroke-width="3"></circle><text x="78" y="428" text-anchor="middle" font-family="Inter,Roboto,sans-serif" font-weight="800" font-size="22" fill="var(--stroke)">$</text></g></g>
+          <g class="floaty b"><g class="coin"><circle cx="186" cy="356" r="19" fill="var(--stroke)"></circle><text x="186" y="363" text-anchor="middle" font-family="Inter,Roboto,sans-serif" font-weight="800" font-size="18" fill="var(--bg)">$</text></g></g>
+          <g class="floaty c"><g class="coin"><circle cx="276" cy="282" r="15" fill="var(--bg)" stroke="var(--stroke)" stroke-width="3"></circle><text x="276" y="288" text-anchor="middle" font-family="Inter,Roboto,sans-serif" font-weight="800" font-size="14" fill="var(--stroke)">$</text></g></g>
+        </g>
+        <g class="par" data-depth="8" fill="none" stroke="var(--stroke)" stroke-width="2.5" stroke-linecap="round" opacity=".6">
+          <path d="M300 470q20-14 40 0t40 0 40 0 40 0 40 0"></path>
+          <path d="M330 488q20-14 40 0t40 0 40 0 40 0"></path>
+        </g>
+      </svg>
+
+      <div class="scene" id="scene">
+        <div class="card3d" id="card">
+          <div class="row"><span>GOAL · Goa trip</span><span class="pill" id="status">On track</span></div>
+          <div class="amt num" id="amt">$120</div>
+          <div class="bar"><i id="fill"></i></div>
+          <div class="row"><span class="num">of $600</span><span>Dec 2027</span></div>
+          <div class="cardbtns">
+            <button type="button" id="topup">Add $50</button>
+            <button type="button" id="hide" aria-pressed="false">Hide amount</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="corner tl" aria-hidden="true"></div>
+    <div class="head">
+      <h2>One income, several goals, one plan</h2>
+      <p>Most savings tools track a single pot. Nestline decides how your money is shared between everything you're saving for.</p>
+    </div>
+    <div class="bento">
+      <div class="tile t-wide">
+        <span class="tag">Planning</span>
+        <h3>It sorts your goals by what can't wait</h3>
+        <p>Fixed dates come first, flexible ones share what's left. When everything doesn't fit, the agent asks you which trade-off you prefer.</p>
+        <div class="prio">
+          <div><span>1. College fees <small>fixed date</small></span><span class="num">$200/mo</span></div>
+          <div><span>2. Bike <small>can move</small></span><span class="num">$150/mo</span></div>
+          <div><span>3. Goa trip <small>flexible</small></span><span class="num">$50/mo</span></div>
+        </div>
+      </div>
+      <div class="tile t-sm t-grad">
+        <h3>Add money whenever you have it</h3>
+        <p>A bonus, a gift, a refund. Top up any goal with any amount through PayPal.</p>
+        <span class="topupfig num">+ $50<small>added to Goa trip, now ahead of plan</small></span>
+      </div>
+      <div class="tile t-sm">
+        <span class="tag">Optional</span>
+        <h3>A monthly plan, only if you want one</h3>
+        <p>The agent suggests an amount. Accept it, change it, or skip it.</p>
+      </div>
+      <div class="tile t-sm">
+        <span class="tag">Adapts</span>
+        <h3>Missed a month? It rebalances</h3>
+        <p>The plan is recalculated and you get one line on what changed and why.</p>
+      </div>
+      <div class="tile t-sm">
+        <span class="tag">Agent pays</span>
+        <h3>It pays when the goal is ready</h3>
+        <p>You approve, PayPal moves the money. Nothing happens without your tap.</p>
+        <span class="paybtn">Approve and pay</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="planner">
+    <div class="corner br" aria-hidden="true"></div>
+    <div class="head">
+      <h2>Try the maths on a goal</h2>
+      <p>Move the sliders to see what a goal would need each month.</p>
+    </div>
+    <div class="planner">
+      <div>
+        <div class="field">
+          <label for="goalAmt">Goal amount <output id="goalOut" class="num" for="goalAmt">$600</output></label>
+          <input type="range" id="goalAmt" min="100" max="5000" step="50" value="600">
+        </div>
+        <div class="field">
+          <label for="months">Months to get there <output id="monthsOut" class="num" for="months">13 months</output></label>
+          <input type="range" id="months" min="2" max="36" step="1" value="13">
+        </div>
+        <div class="chips" role="group" aria-label="Example goals">
+          <button type="button" data-a="600" data-m="13">Goa trip</button>
+          <button type="button" data-a="900" data-m="6">Bike down payment</button>
+          <button type="button" data-a="1400" data-m="7">College fees</button>
+        </div>
+      </div>
+      <div class="result">
+        <span>Suggested monthly amount</span>
+        <span class="big num" id="monthly">$47</span>
+        <p id="planNote">Rounded up to the nearest dollar. The monthly plan is optional: top up when you can and the agent recalculates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <svg class="archdoodle" viewBox="0 0 200 140" aria-hidden="true" fill="none" stroke="var(--stroke)" stroke-width="2.4" stroke-linecap="round"><path d="M70 130V70a50 50 0 0 1 100 0v60"></path><path d="M90 130V74a30 30 0 0 1 60 0v56"></path><path d="M58 130h124"></path><path d="M120 64V30"></path><path d="M120 32l22 8-22 8z" fill="var(--stroke)"></path><path d="M4 136c24-4 40-18 56-34" stroke-dasharray="2 9"></path></svg>
+    <div class="head"><h2>How it works</h2></div>
+    <ol class="steps">
+      <li><b>Step 1</b><h3>Tell the agent your goals</h3><p>Write them in one message, in your own words. No forms.</p></li>
+      <li><b>Step 2</b><h3>Save your way</h3><p>Top up any time, set a monthly amount, or do both.</p></li>
+      <li><b>Step 3</b><h3>Approve the payment</h3><p>When a goal is funded, the agent asks once and pays through PayPal.</p></li>
+    </ol>
+  </section>
+
+  <footer>Nestline is a hackathon project built on the PayPal sandbox. Goals and amounts shown here are examples.</footer>
+</div>
+
+<div class="skins" role="group" aria-label="Colour theme">
+  <button type="button" data-skin="1" aria-label="Warm Sand and Ink Blue" style="background:linear-gradient(120deg,#FDBA74,#FED7AA,#93C5FD)"></button>
+  <button type="button" data-skin="2" aria-label="Obsidian Vault and Cyan" style="background:radial-gradient(circle at top right,#0EA5E9,#3B82F6 45%,#070B14)"></button>
+  <button type="button" data-skin="3" aria-label="Electric Cobalt and Cream" style="background:linear-gradient(135deg,#2563EB,#38BDF8 55%,#818CF8)"></button>
+  <button type="button" data-skin="4" aria-label="Mint Surge and Deep Forest" style="background:linear-gradient(135deg,#059669,#34D399,#3B82F6)"></button>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var inr = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+  function countTo(el, from, to, fmt){
+    if (reduce) { el.textContent = fmt(to); return; }
+    var t0 = performance.now(), d = 700;
+    (function tick(t){
+      var p = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(from + (to - from) * e);
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  /* half-rangoli: drawn from repeated petals so it stays perfectly symmetrical */
+  (function(){
+    function ring(n, off, inner){ var s = ''; for (var i = 0; i < n; i++) s += '<g transform="rotate(' + (off + i * 360 / n) + ')">' + inner + '</g>'; return s; }
+    var svg = '<svg viewBox="-104 -104 208 208" fill="none" stroke="var(--rangoli)" stroke-width=".55" stroke-linejoin="round">'
+      + '<circle r="5"/><circle r="17"/><circle r="19.5"/>'
+      + ring(12, 0, '<ellipse cx="0" cy="-11" rx="2.1" ry="5"/>')
+      + ring(8, 0, '<path d="M0 -20C9 -30 9 -44 0 -53C-9 -44 -9 -30 0 -20Z"/><path d="M0 -26C5 -33 5 -41 0 -47C-5 -41 -5 -33 0 -26Z"/>')
+      + ring(8, 22.5, '<path d="M0 -24C8 -34 9 -48 0 -60C-9 -48 -8 -34 0 -24Z"/><circle cx="0" cy="-40" r="1.3" fill="var(--rangoli)"/>')
+      + ring(16, 0, '<path d="M0 -50C10 -58 11 -70 0 -80C-11 -70 -10 -58 0 -50Z"/><path d="M0 -57C5 -62 5 -69 0 -74C-5 -69 -5 -62 0 -57Z"/>')
+      + ring(16, 11.25, '<path d="M0 -62C11 -72 12 -86 0 -100C-12 -86 -11 -72 0 -62Z"/><path d="M0 -76C3 -80 3 -86 0 -91C-3 -86 -3 -80 0 -76Z"/><circle cx="0" cy="-70" r="1.6"/><circle cx="0" cy="-70" r=".6" fill="var(--rangoli)"/>')
+      + ring(32, 5.625, '<circle cx="0" cy="-84" r=".8" fill="var(--rangoli)"/>')
+      + '</svg>';
+    document.getElementById('rangoli').innerHTML = svg;
+    document.querySelectorAll('.corner').forEach(function(c){ c.innerHTML = svg; });
+  })();
+
+  /* themes */
+  var skinBtns = document.querySelectorAll('.skins button');
+  function setSkin(n){
+    document.body.className = n === '1' ? '' : 'skin-' + n;
+    skinBtns.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.skin === n ? 'true' : 'false'); });
+    try { localStorage.setItem('nestline-skin-v2', n); } catch (e) {}
+  }
+  var saved = '1';
+  try { saved = localStorage.getItem('nestline-skin-v2') || '1'; } catch (e) {}
+  setSkin(saved);
+  skinBtns.forEach(function(b){ b.addEventListener('click', function(){ setSkin(b.dataset.skin); }); });
+
+  /* artwork parallax + card tilt */
+  var art = document.getElementById('art'), card = document.getElementById('card');
+  var layers = art.querySelectorAll('.par');
+  if (!reduce) {
+    art.addEventListener('pointermove', function(ev){
+      var r = art.getBoundingClientRect();
+      var x = (ev.clientX - r.left) / r.width - .5, y = (ev.clientY - r.top) / r.height - .5;
+      layers.forEach(function(g){ var d = +g.dataset.depth; g.style.transform = 'translate(' + (-x * d) + 'px,' + (-y * d) + 'px)'; });
+      card.style.setProperty('--ry', (x * 16) + 'deg');
+      card.style.setProperty('--rx', (-y * 14) + 'deg');
+      card.style.setProperty('--gx', (50 + x * 80) + '%');
+      card.style.setProperty('--gy', (40 + y * 80) + '%');
+    });
+    art.addEventListener('pointerleave', function(){
+      layers.forEach(function(g){ g.style.transform = ''; });
+      card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg');
+    });
+  }
+
+  /* goal card */
+  var saved$ = 120, target = 600, hidden = false;
+  var amt = document.getElementById('amt'), fill = document.getElementById('fill'), status = document.getElementById('status');
+  var topup = document.getElementById('topup'), hideBtn = document.getElementById('hide');
+  countTo(amt, 0, saved$, inr);
+  topup.addEventListener('click', function(){
+    if (saved$ >= target) return;
+    var prev = saved$; saved$ = Math.min(target, saved$ + 50);
+    fill.style.width = (saved$ / target * 100) + '%';
+    if (hidden) amt.textContent = '$ • • • •'; else countTo(amt, prev, saved$, inr);
+    if (saved$ >= target) { status.textContent = 'Goal reached'; topup.textContent = 'Fully funded'; topup.disabled = true; }
+    else status.textContent = 'Ahead of plan';
+  });
+  hideBtn.addEventListener('click', function(){
+    hidden = !hidden;
+    hideBtn.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+    hideBtn.textContent = hidden ? 'Show amount' : 'Hide amount';
+    amt.textContent = hidden ? '$ • • • •' : inr(saved$);
+  });
+
+  /* planner */
+  var gA = document.getElementById('goalAmt'), gM = document.getElementById('months');
+  var gO = document.getElementById('goalOut'), mO = document.getElementById('monthsOut'), out = document.getElementById('monthly');
+  var last = 47;
+  function plan(){
+    var a = +gA.value, m = +gM.value, per = Math.ceil(a / m);
+    gO.textContent = inr(a); mO.textContent = m + ' months';
+    countTo(out, last, per, inr); last = per;
+  }
+  gA.addEventListener('input', plan); gM.addEventListener('input', plan);
+  document.querySelectorAll('.chips button').forEach(function(b){
+    b.addEventListener('click', function(){ gA.value = b.dataset.a; gM.value = b.dataset.m; plan(); });
+  });
+})();
+</script>
+
+</body>
+</html>

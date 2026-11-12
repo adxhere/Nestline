@@ -1,0 +1,8 @@
+{
+  "name": "nestline",
+  "version": "1.0.0",
+  "description": "AI savings agent that plans across goals and pays through PayPal",
+  "license": "MIT",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20.12" }
+}
