@@ -1,3 +1,5 @@
+<img src="public/logo.png" alt="Nestline logo" width="96">
+
 # Nestline
 
 An AI savings agent built on PayPal. Tell it what you are saving for and by when.
